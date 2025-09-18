@@ -27,9 +27,9 @@ Usage:
         
 Environment:
     Requires .env file with database credentials:
-    - POSTGRESQL_BAIS_DB_HOST
-    - POSTGRESQL_BAIS_DB_PORT  
-    - POSTGRESQL_BAIS_DB_NAME
+    - POSTGRESQL_INSTANCE_HOST
+    - POSTGRESQL_INSTANCE_PORT
+    - POSTGRESQL_BAIS_DB
     - POSTGRESQL_BAIS_DB_ADMIN_USER
     - POSTGRESQL_BAIS_DB_ADMIN_PASSWORD
 """
@@ -57,9 +57,9 @@ class DemoDataImporter:
         
         # Database credentials from environment
         self.db_config = {
-            'host': os.getenv('POSTGRESQL_BAIS_DB_HOST', 'localhost'),
-            'port': os.getenv('POSTGRESQL_BAIS_DB_PORT', '5432'),
-            'database': os.getenv('POSTGRESQL_BAIS_DB_NAME', 'prutech_bais'),
+            'host': os.getenv('POSTGRESQL_INSTANCE_HOST', 'localhost'),
+            'port': os.getenv('POSTGRESQL_INSTANCE_PORT', '5432'),
+            'database': os.getenv('POSTGRESQL_BAIS_DB', 'prutech_bais'),
             'user': os.getenv('POSTGRESQL_BAIS_DB_ADMIN_USER'),
             'password': os.getenv('POSTGRESQL_BAIS_DB_ADMIN_PASSWORD')
         }
@@ -146,14 +146,15 @@ class DemoDataImporter:
             # Truncate all tables in dependency order
             all_tables = [
                 'biz_component_relationships',
-                'biz_components', 
+                'biz_components',
                 'component_subtypes',
                 'component_types',
                 'component_ops_statuses',
                 'component_environments',
                 'component_physical_locations',
                 'component_abstraction_levels',
-                'component_relationship_types'
+                'component_relationship_types',
+                'component_protocols'
             ]
             
             for table in all_tables:
@@ -277,12 +278,13 @@ class DemoDataImporter:
                 
                 reference_tables = [
                     'component_types',
-                    'component_subtypes', 
+                    'component_subtypes',
                     'component_ops_statuses',
                     'component_environments',
                     'component_physical_locations',
                     'component_abstraction_levels',
-                    'component_relationship_types'
+                    'component_relationship_types',
+                    'component_protocols'
                 ]
                 
                 for table in reference_tables:
@@ -308,7 +310,8 @@ class DemoDataImporter:
             'component_environments',
             'component_physical_locations',
             'component_abstraction_levels',
-            'component_relationship_types'
+            'component_relationship_types',
+            'component_protocols'
         ]
         
         with conn.cursor() as cur:
@@ -712,9 +715,9 @@ def main():
         print(f"{'='*60}")
         print("DATABASE CONNECTION INFO")
         print(f"{'='*60}")
-        print(f"  Host:     {os.getenv('POSTGRESQL_BAIS_DB_HOST', 'localhost')}")
-        print(f"  Port:     {os.getenv('POSTGRESQL_BAIS_DB_PORT', '5432')}")
-        print(f"  Database: {os.getenv('POSTGRESQL_BAIS_DB_NAME', 'prutech_bais')}")
+        print(f"  Host:     {os.getenv('POSTGRESQL_INSTANCE_HOST', 'localhost')}")
+        print(f"  Port:     {os.getenv('POSTGRESQL_INSTANCE_PORT', '5432')}")
+        print(f"  Database: {os.getenv('POSTGRESQL_BAIS_DB', 'prutech_bais')}")
         print(f"  User:     {os.getenv('POSTGRESQL_BAIS_DB_ADMIN_USER', 'not set')}")
         print(f"  Password: {'*' * 8 if os.getenv('POSTGRESQL_BAIS_DB_ADMIN_PASSWORD') else 'not set'}")
         print(f"  Schema:   demo")
