@@ -1,0 +1,197 @@
+# =====================================================================
+# BAIS Application Configuration
+# =====================================================================
+# This file contains all application settings except secrets
+# Secrets should be stored in .env file
+# NO HARDCODING - All tunables go here
+
+# Database Configuration
+database:
+  default_schema: "demo"  # Start with demo for safety
+  available_schemas:
+    - demo
+    - live
+    - live_masked
+  
+  # Connection pool settings (for future use if needed)
+  pool:
+    min_size: 1
+    max_size: 5
+    timeout: 30
+
+# Authentication Configuration  
+auth:
+  # Cookie configuration for session persistence
+  cookie:
+    name: 'bais_auth_cookie'
+    # Key should be generated with: python -c "import secrets; print(secrets.token_hex(32))"
+    # Store the actual key in .env as AUTH_COOKIE_KEY
+    key_env_var: 'AUTH_COOKIE_KEY'  # Reference to .env variable
+    expiry_hours: 2  # 2-hour timeout as requested
+  
+  # Authentication requirements
+  require_auth: true
+  allow_registration: false  # Users must be created via SQL
+  
+  # Password policy (for future implementation)
+  password:
+    min_length: 8
+    require_uppercase: true
+    require_lowercase: true
+    require_digits: true
+    require_special: true
+
+# UI Configuration
+ui:
+  # Application metadata
+  app_title: "Bank Application Inventory System (BAIS)"
+  page_title: "BAIS - Network Inventory"
+  page_icon: "🏦"
+  layout: "wide"  # Use full screen width
+  
+  # Anti-flat design settings
+  theme:
+    style: "professional_banking"
+    high_contrast: true  # Strong contrast for readability
+    show_borders: true   # All components have visible borders
+    use_shadows: true    # Depth via shadows
+    use_gradients: true  # Professional gradient backgrounds
+  
+  # Data display settings
+  pagination:
+    rows_per_page: 20
+    max_export_rows: 5000
+  
+  # Table settings
+  tables:
+    show_row_numbers: true
+    alternating_rows: true  # Zebra striping for readability
+    highlight_on_hover: true
+    border_style: "solid"  # Not borderless!
+  
+  # Form settings
+  forms:
+    label_style: "bold"  # Clear, bold labels
+    required_indicator: " *"
+    help_text_style: "italic"
+    
+  # Button settings
+  buttons:
+    style: "raised"  # Not flat!
+    show_icons: true
+    confirm_deletes: true
+    
+  # Color scheme (professional banking colors)
+  colors:
+    primary: "#1f4e79"      # Professional blue
+    secondary: "#2e5c85"    # Slightly lighter blue
+    success: "#28a745"      # Green for success
+    danger: "#dc3545"       # Red for danger
+    warning: "#ffc107"      # Yellow for warning
+    info: "#17a2b8"         # Light blue for info
+    background: "#ffffff"   # Clean white
+    surface: "#f8f9fa"      # Very light gray for cards
+    text_primary: "#000000" # Pure black text (high contrast)
+    text_secondary: "#333333" # Dark gray for secondary text
+    border: "#666666"       # Visible gray borders
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # File logging (optional)
+  file:
+    enabled: false
+    path: "logs/bais.log"
+    max_bytes: 10485760  # 10MB
+    backup_count: 5
+  
+  # Console logging
+  console:
+    enabled: true
+    colorize: true
+
+# Feature Flags (for gradual rollout)
+features:
+  enable_bulk_import: true
+  enable_export: true
+  enable_relationship_visualization: false  # Future feature
+  enable_audit_log_view: true
+  enable_user_management_ui: false  # Users managed via SQL only
+  
+# Performance Settings
+performance:
+  cache:
+    enabled: true
+    ttl_seconds: 300  # 5 minutes
+  
+  query:
+    timeout_seconds: 30
+    max_results: 10000
+
+# Security Settings
+security:
+  # Session security
+  session:
+    secure_cookies: true  # Use HTTPS in production
+    same_site: "lax"
+    http_only: true
+  
+  # CORS settings (if needed)
+  cors:
+    enabled: false
+    allowed_origins: []
+  
+  # Rate limiting (future)
+  rate_limit:
+    enabled: false
+    requests_per_minute: 60
+
+# Validation Rules
+validation:
+  # FQDN validation
+  fqdn:
+    min_length: 3
+    max_length: 255
+    
+  # IP address validation
+  ip:
+    allow_private: true
+    allow_ipv6: true
+    
+  # Port validation
+  port:
+    min: 0
+    max: 65535
+    
+  # VLAN validation
+  vlan:
+    min: 1
+    max: 4094
+
+# Export Settings
+export:
+  formats:
+    - csv
+    - excel
+    - json
+  
+  # CSV settings
+  csv:
+    delimiter: ","
+    quote_char: '"'
+    include_headers: true
+    
+# Notification Settings (future)
+notifications:
+  enabled: false
+  email:
+    smtp_server: ""
+    smtp_port: 587
+    use_tls: true
+
+# =====================================================================
+# END OF CONFIGURATION
+# Remember: NO HARDCODING - All settings should be here or in .env
+# =====================================================================

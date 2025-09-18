@@ -1,0 +1,117 @@
+{
+  "_generated": "2025-09-08 by Claude",
+  "_comment": "Column name mappings for BAIS Excel spreadsheet generator.",
+  "_description": "Maps database column names to user-friendly short names for Excel headers. Default is identity mapping if unchanged.",
+  "_usage": "Used bidirectionally for both export (DB->Excel) and import (Excel->DB).",
+  "_format": "Table name as JSON stanza key, then column mappings as nested objects.",
+  "_note": "Missing columns fall back to original database names.",
+  
+  "biz_components": {
+    "component_id": "component_id",
+    "component_type_id": "component_type_id",
+    "component_subtype_id": "component_subtype_id",
+    "ops_status_id": "ops_status_id",
+    "environment_id": "environment_id",
+    "physical_location_id": "physical_location_id",
+    "abstraction_level_id": "abstraction_level_id",
+    "fqdn": "fqdn",
+    "ip": "ip",
+    "mac": "mac",
+    "port": "port",
+    "vlan": "vlan",
+    "cidr": "cidr",
+    "description": "description",
+    "created_at": "created_at",
+    "updated_at": "updated_at",
+    "created_by": "created_by",
+    "updated_by": "updated_by"
+  },
+  
+  "biz_component_relationships": {
+    "relationship_id": "relationship_id",
+    "component_id": "component_id",
+    "related_component_id": "related_component_id",
+    "relationship_type_id": "relationship_type_id",
+    "description": "description",
+    "created_at": "created_at",
+    "updated_at": "updated_at",
+    "created_by": "created_by",
+    "updated_by": "updated_by"
+  },
+  
+  "component_types": {
+    "component_type_id": "component_type_id",
+    "type_name": "type_name",
+    "description": "description",
+    "created_at": "created_at",
+    "created_by": "created_by"
+  },
+  
+  "component_subtypes": {
+    "component_subtype_id": "component_subtype_id",
+    "component_type_id": "component_type_id",
+    "subtype_name": "subtype_name",
+    "description": "description",
+    "created_at": "created_at",
+    "created_by": "created_by"
+  },
+  
+  "component_ops_statuses": {
+    "ops_status_id": "ops_status_id",
+    "status_name": "status_name",
+    "description": "description",
+    "created_at": "created_at",
+    "created_by": "created_by"
+  },
+  
+  "component_environments": {
+    "environment_id": "environment_id",
+    "environment_name": "environment_name",
+    "description": "description",
+    "created_at": "created_at",
+    "created_by": "created_by"
+  },
+ 
+  "component_physical_locations": {
+    "physical_location_id": "physical_location_id",
+    "location_name": "location_name",
+    "description": "description",
+    "created_at": "created_at",
+    "created_by": "created_by"
+  },
+  
+  "component_abstraction_levels": {
+    "abstraction_level_id": "abstraction_level_id",
+    "level_name": "level_name",
+    "description": "description",
+    "created_at": "created_at",
+    "created_by": "created_by"
+  },
+
+  "component_relationship_types": {
+    "relationship_type_id": "relationship_type_id",
+    "type_name": "type_name",
+    "description": "description",
+    "created_at": "created_at",
+    "created_by": "created_by"
+  },
+
+  "auth_user_roles": {
+    "auth_user_role_id": "auth_user_role_id",
+    "role_name": "role_name",
+    "description": "description",
+    "created_at": "created_at"
+  },
+
+  "auth_users": {
+    "auth_user_id": "auth_user_id",
+    "username": "username",
+    "email": "email",
+    "full_name": "full_name",
+    "auth_user_role_id": "auth_user_role_id",
+    "is_active": "is_active",
+    "last_login": "last_login",
+    "created_at": "created_at",
+    "updated_at": "updated_at"
+  }
+}
