@@ -19,7 +19,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-app/scripts/spreadsheets.d
+#app/scripts/spreadsheets.d
 MANIFEST
 
 # Environment variables
